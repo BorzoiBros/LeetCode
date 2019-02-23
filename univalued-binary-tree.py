@@ -1,13 +1,12 @@
 # https://leetcode.com/problems/univalued-binary-tree/
 
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-x = [1,1,1,1,1,null,1]
 
 class Solution(object):
     def isUnivalTree(self, root):
@@ -15,14 +14,12 @@ class Solution(object):
         :type root: TreeNode
         :rtype: bool
         """
-        root = x[0]
-        for i in x:
-            if i == x or i == null:
-                continue
-            else:
-                return False
-        return True
-
+        left_correct = (not root.left or root.val == root.left.val
+                and self.isUnivalTree(root.left))
+        right_correct = (not root.right or root.val == root.right.val
+                and self.isUnivalTree(root.right))
+        return left_correct and right_correct
+root = TreeNode(x)
 solution = Solution()
-print(solution.isUnivalTree(x))
+print(solution.isUnivalTree(root))
 
